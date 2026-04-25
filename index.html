@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Harshita 🎉</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  overflow-x: hidden;
+  color: white;
+}
+
+h1 {
+  margin-top: 80px;
+  font-size: 3em;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  transform: scale(1.1);
+}
+
+/* Hidden section */
+#surprise {
+  display: none;
+  margin-top: 40px;
+}
+
+/* Cards */
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: 220px;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  animation: float 4s linear infinite;
+}
+@keyframes float {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-600px); opacity: 0; }
+}
+
+/* Fireworks */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎂 Happy Birthday Harshita 🎂</h1>
+<p>Click below for a surprise 👇</p>
+
+<button onclick="startSurprise()">Click Me 🎁</button>
+
+<!-- Music -->
+<audio id="music" src="https://www.bensound.com/bensound-music/bensound-birthday.mp3"></audio>
+
+<!-- Surprise Section -->
+<div id="surprise">
+
+  <h2>🎉 Surprise For You 🎉</h2>
+
+  <div class="card-container">
+    <div class="card"><h3>🎂 Happy Birthday</h3><p>You are amazing 💖</p></div>
+    <div class="card"><h3>⭐ Special</h3><p>Keep shining always ✨</p></div>
+    <div class="card"><h3>🎁 Blessings</h3><p>Dreams come true 💫</p></div>
+    <div class="card"><h3>💖 Smile</h3><p>Stay happy 😊</p></div>
+  </div>
+
+  <h2>💌 Message</h2>
+  <p style="width:60%; margin:auto;">
+    Harshita, you are someone really special.  
+    I’m lucky to have you in my life 💖  
+    Enjoy your day to the fullest!
+  </p>
+
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+function startSurprise() {
+  document.getElementById("surprise").style.display = "block";
+  document.getElementById("music").play();
+
+  startHearts();
+  startFireworks();
+}
+
+// HEARTS
+function startHearts() {
+  setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random()*20+20)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
+  }, 300);
+}
+
+// FIREWORKS
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function startFireworks() {
+  setInterval(() => {
+    let x = Math.random()*canvas.width;
+    let y = Math.random()*canvas.height;
+
+    for(let i=0;i<20;i++){
+      ctx.fillStyle = "white";
+      ctx.fillRect(x + Math.random()*50, y + Math.random()*50, 3, 3);
+    }
+  }, 200);
+}
+</script>
+
+</body>
+</html>
